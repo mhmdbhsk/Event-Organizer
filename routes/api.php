@@ -17,13 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix'=>'', 'middleware'=>['auth', 'role:member']], function(){
-    Route::resource('client', 'UserIndexController');
-    Route::post('client/{id}/daftar', 'UserIndexController@daftar');
-});
-
 Route::group(['prefix'=>'admin'], function(){
-    Route::resource('events', 'ApiEventController');
-    Route::resource('users', 'ApiUserController');
-    Route::resource('participants', 'ApiParticipantController');
+    Route::resource('events', 'Api\EventController');
+    Route::resource('users', 'Api\UserController');
+    Route::resource('participants', 'Api\ParticipantController');
 });

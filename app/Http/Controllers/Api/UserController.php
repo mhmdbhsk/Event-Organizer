@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Event;
-use App\Participant;
-use Auth;
 
-class UserIndexController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +14,7 @@ class UserIndexController extends Controller
      */
     public function index()
     {
-        $event = Event::get();
-        return view('event', compact('event'));
+        //
     }
 
     /**
@@ -49,11 +46,7 @@ class UserIndexController extends Controller
      */
     public function show($id)
     {
-        $user = Auth::user();
-        $event = Event::find($id);
-        $participant = Participant::where('event_id', $id)->get();
-        $ket = Participant::where('user_id', $user->id)->get();
-        return view('detailevent', compact('event', 'participant', 'ket'));
+        //
     }
 
     /**
@@ -89,19 +82,4 @@ class UserIndexController extends Controller
     {
         //
     }
-
-    public function daftar($id)
-    {
-        $user = Auth::user();
-        $event = Event::find($id);
-        $participant = Participant::where('event_id', $id)->get();
-        $ket = Participant::where('user_id', $user->id)->get();
-        $create = new Participant;
-        $create->user_id = $user->id;
-        $create->event_id = $event->id;
-        $create->save();  
-        return redirect('user/{{$event->id}}') -> with($event, $participant, $ket);
-    }
-
 }
-

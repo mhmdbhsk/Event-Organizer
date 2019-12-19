@@ -33,8 +33,8 @@
                         <tr>
                         <th scope="col">No</th>
                         <th scope="col">Name Event</th>
-                        <th scope="col">Date Start</th>
-                        <th scope="col">Date Finish</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Date</th>
                         <th scope="col">Quota</th>
                         <th scope="col">Option</th>
                         </tr>
@@ -47,8 +47,8 @@
                         <tr>
                             <td>{{$no++}}</td>
                             <td>{{$event->name_event}}</td>
-                            <td>{{$event->date_start}}</td>
-                            <td>{{$event->date_finish}}</td>
+                            <td>{{$event->location}}</td>
+                            <td>{{$event->date_start}} s.d {{$event->date_finish}}</td>
                             <td>{{$event->quota}}</td>
                             <td>
                                 <button class="btn btn-primary" type="button" name="edit"><i class="fa fa-pencil" onclick="location.href='/admin/events/{{$event->id}}/edit'"> Edit</i></button>

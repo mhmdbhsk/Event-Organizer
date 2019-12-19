@@ -17,7 +17,19 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $events = Event::all();
+            return response()->json([
+                'message' => 'Here you got',
+                'data' => $events
+            ],200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'Something Wrong',
+                'data' => null
+            ], 400);
+        }
+        
     }
 
     /**
@@ -27,7 +39,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -38,7 +50,56 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            try {
+                $message =[
+
+                ];
+
+                $validate = Validator::make($request->all(), [
+                    'name_event' => 'required|string|max:25',
+                    'location' => 'required|string|max:200',
+                    'description' => 'required|string|max:255',
+                    'date_start' => 'required|date',
+                    'date_finish' => 'required|date',
+                    'quota' => 'required|numeric',
+                    'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+                ], $message);
+        
+                if($validate->fails()){
+                    $this->data['message'] = 'error';
+                    $this->data['error'] = $validate->errors();
+                    return $this->data;
+                }
+
+                $event = new Event;
+    
+                if ($request->hasFile('photo')) {
+                    $image = $request->file('photo');
+                    $uuid4 = Uuid::uuid4();
+                    $name = $uuid4->toString().'.'.$image->getClientOriginalExtension();
+                    $destinationPath = public_path('/img/event');
+                    $imagePath = $destinationPath. "/".  $name;
+                    $image->move($destinationPath, $name);
+                    $event->photo = $name;
+                }
+    
+                $event->name_event = $request->name_event;
+                $event->location = $request->location;
+                $event->description = $request->description;
+                $event->date_start = $request->date_start;
+                $event->date_finish = $request->date_finish;
+                $event->quota = $request->quota;
+                $event->save();   
+                return response()->json([
+                    'message' => 'Success Add',
+                    'data' => $event
+                ], 200);
+            } catch (\Throwable $th) {
+                return response()->json([
+                    'message' => 'Something Wrong',
+                    'data' => null
+                ], 400);
+            }
     }
 
     /**
@@ -60,7 +121,7 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -72,7 +133,55 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $message =[
+
+            ];
+    
+            $validate = Validator::make($request->all(), [
+                'name_event' => 'required|string|max:25',
+                'location' => 'required|string|max:200',
+                'description' => 'required|string|max:255',
+                'date_start' => 'required|date',
+                'date_finish' => 'required|date',
+                'quota' => 'required|numeric',
+                'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            ], $message);
+    
+            if($validate->fails()){
+                $this->data['message'] = 'error';
+                $this->data['error'] = $validate->errors();
+                return $this->data;
+            }
+            
+            $event = Event::find($id);
+            if ($request->hasFile('photo')) {
+                $image = $request->file('photo');
+                $uuid4 = Uuid::uuid4();
+                $name = $uuid4->toString().'.'.$image->getClientOriginalExtension();
+                $destinationPath = public_path('/img/event');
+                $imagePath = $destinationPath. "/".  $name;
+                $image->move($destinationPath, $name);
+                $event->photo = $name;
+            }
+            $event->name_event = $request->name_event;
+            $event->location = $request->location;
+            $event->description = $request->description;
+            $event->date_start = $request->date_start;
+            $event->date_finish = $request->date_finish;
+            $event->quota = $request->quota;
+            $event->save();
+            return response()->json([
+                'message' => 'Success Edit',
+                'data' => $event
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'Failed to Edit',
+                'data' => null
+            ], 400);
+        }
+       
     }
 
     /**
@@ -83,6 +192,17 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $users = Event::find($id);
+            $users -> delete();
+            return response()->json([
+                'message' => 'Success Delete',
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'Failed Delete',
+            ], 400);
+        }
+       
     }
 }
