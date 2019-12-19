@@ -139,8 +139,6 @@ class UserController extends Controller
             $users->email = $request->email;
             $users->password = bcrypt('password');
             $users->save();
-            $memberRole = Role::where('name', 'member')->first();
-            $users->attachRole($memberRole);
             return response()->json([
                 'message' => 'Success Edit',
                 'data' => $users

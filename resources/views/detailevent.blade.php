@@ -29,17 +29,12 @@
                         <h2>Jadwal Pelaksanaan</h2>
                         <p>{{$event->date_start}} <b>s/d</b> {{$event->date_finish}}</p><br>
                         <h2>Lokasi</h2>
-                        <p>Kota Bogor <br>
-                        Digital Innovation Lounge (DILo) Bogor <br>
-                        Gedung OPMC Jalan Raya Pajajaran No.39 <br>
-                        Kota Bogor 16128.
-                        </p>
-                        
+                        <p>{{$event->location}}</p>
                         <br>
 
                         <h2>Deskripsi</h2>
                         <img width="100%"
-                        src="https://dicodingacademy.blob.core.windows.net/eventimages/201803202054329ec60f16509a9164bb0ce4bcc18dffd2.png" alt=""><br><br>
+                        src="{{asset('img/event/<?=$event->photo?>')}}" alt=""><br><br>
                         {{$event->description}}
                 </div>
                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">

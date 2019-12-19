@@ -23,8 +23,8 @@ Route::group(['prefix'=>''], function(){
 
 
 Route::group(['prefix'=>'', 'middleware'=>['auth', 'role:member']], function(){
-    Route::resource('client', 'UserIndexController');
-    Route::post('client/{id}/daftar', 'UserIndexController@daftar');
+    Route::resource('user', 'UserIndexController');
+    Route::post('user/{id}/daftar', 'UserIndexController@daftar');
 });
 
 Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'role:admin']], function(){
