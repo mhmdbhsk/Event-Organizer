@@ -1,0 +1,36 @@
+
+.alas{
+    margin-top: 100px;
+    background-color:rgb(255, 255, 255) !important;
+    padding:50px;
+    margin-right: 70px;
+    margin-left:70px;
+}
+
+.tombol{
+    margin-right: 150px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.garis{
+    border: 0;
+    height: 30px;
+    border-style: solid;
+    border-color: #8c8c8c;
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
+}
+
+.garis:before{
+    display: block;
+    content: "";
+    height: 30px;
+    margin-top: -31px;
+    border-style: solid;
+    border-color: #8c8c8c;
+    border-width: 0 0 1px 0;
+    border-radius: 20px;
+}
+
+

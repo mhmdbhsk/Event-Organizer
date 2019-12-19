@@ -1,0 +1,61 @@
+.header{
+    margin-top: 260px;
+}
+
+.jumbotron{
+    margin-top: 300px;
+    background-color:rgba(220, 202, 198, 0.8) !important;
+    padding:50px;
+    margin-right: 70px;
+    margin-left:70px;
+}
+
+.isi h5{
+    margin-top: 10px;
+}
+
+.content2{
+    margin-top: 120px;
+    background-color:rgba(255, 255, 255, 0.9) !important;
+    padding:50px;
+    margin-right: 70px;
+    margin-left:70px;
+}
+
+.tombol{
+    margin-right: 150px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.garis{
+    border: 0;
+    height: 30px;
+    border-style: solid;
+    border-color: #8c8c8c;
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
+}
+
+.garis:before{
+    display: block;
+    content: "";
+    height: 30px;
+    margin-top: -31px;
+    border-style: solid;
+    border-color: #8c8c8c;
+    border-width: 0 0 1px 0;
+    border-radius: 20px;
+}
+
+.nav-link{
+    color: blue;
+}
+
+.list{
+    margin-top: 12px;
+    background-color:rgb(255, 255, 255) !important;
+    padding:50px;
+    margin-right: 70px;
+    margin-left:70px;
+}

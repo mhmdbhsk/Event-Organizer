@@ -1,0 +1,27 @@
+body{
+    background-image:url('https://www.newstatesman.com/sites/all/themes/creative-responsive-theme/images/new_statesman_events.jpg');
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.navbar{
+    background-color:rgba(255,255,255, 0.8) !important;
+}
+
+.nav-link{
+    color:black;
+    font-weight: bold;
+    font-size: 125%;
+}
+
+.navbar-brand{
+    color:black;
+    font-weight: bold;
+    font-size: 125%;
+}
+
+.navbar-nav .auten{
+    color: white !important;
+    font-weight: bold;
+}
