@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Event;
+use App\Participant;
+use Illuminate\Support\Facades\DB;
 
 class ParticipantController extends Controller
 {
@@ -14,7 +17,18 @@ class ParticipantController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $events = DB::table('events')->get();
+            return response()->json([
+                'message' => 'Here you got',
+                'data' => $events
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'Something Wrong',
+                'data' => null
+            ], 400);
+        }
     }
 
     /**
@@ -46,7 +60,24 @@ class ParticipantController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $participant = Participant::find($id);
+            $participants = DB::table('participants')
+            ->join('users','participants.user_id','=','users.id')
+            ->where('event_id', $id)
+            ->join('events','participants.event_id','=','events.id')
+            ->get(['event_id', 'name_event', 'location', 'description', 'date_start', 
+                    'date_finish', 'quota', 'user_id', 'name', 'email']);
+            return response()->json([
+                'message' => 'Here All the Event',
+                'data' => $participants
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'Something Wrong',
+                'data' => null
+            ], 200);
+        }
     }
 
     /**
@@ -80,6 +111,20 @@ class ParticipantController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $participant = Participant::find($id);
+            $participants = DB::table('participants')
+            ->join('users','participants.user_id','=','users.id')
+            ->where('user_id', $id)
+            ->delete();
+            return response()->json([
+                'message' => 'Delete Success',
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'Something Wrong',
+            ], 400);
+        }
+        
     }
 }
