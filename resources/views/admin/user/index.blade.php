@@ -20,7 +20,22 @@
                     <h4>Heres You Got</h4>
                 </div>
                 <hr class="garis">
-                <a href="/admin/users/create" class="btn btn-success">Add User</a>
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="btn btn-success btn-md"
+                    onclick="location.href='/admin/users/create'">Add User</button>
+                    &nbsp &nbsp
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-warning dropdown-toggle"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Laporan
+                        <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="/admin/user/pdf" class="dropdown-item">PDF</a></li>
+                            <li><a href="/admin/user/excel" class="dropdown-item">Excel</a></li>
+                        </ul>
+                    </div>
+                </div>
                 <br><br>
                 @if (session('status'))
                     <div class="alert alert-success">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Event;
 use App\Participant;
 use Auth;
+use DB;
 
 class UserIndexController extends Controller
 {
@@ -87,7 +88,9 @@ class UserIndexController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $participant = Participant::find($id);
+        $participant -> delete();
+        return redirect('/user')->with('status', 'Sucessfully Cancel the Event');
     }
 
     public function daftar($id)
@@ -100,7 +103,17 @@ class UserIndexController extends Controller
         $create->user_id = $user->id;
         $create->event_id = $event->id;
         $create->save();  
-        return redirect('user/{{$event->id}}') -> with($event, $participant, $ket);
+        return redirect('/user')->with('status', 'Sucessfully Join the Event');
+    }
+
+    public function myevent(){
+        $participant = DB::table('participants')
+        ->join('events', 'participants.event_id', '=', 'events.id')
+        ->join('users', 'participants.user_id', '=','users.id')
+        ->where('user_id','=',Auth::user()->id)
+        ->select('events.*', 'participants.id as idparticipants')
+        ->get();
+        return view('myevent', compact('participant'));
     }
 
 }

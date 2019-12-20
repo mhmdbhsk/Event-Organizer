@@ -52,10 +52,10 @@ class ParticipantController extends Controller
         $participant = Participant::find($id);
         $participants = DB::table('participants')
             ->join('users','participants.user_id','=','users.id')
-            ->where('event_id', $id)
             ->join('events','participants.event_id','=','events.id')
             ->get();
-        return view('admin.peserta.detail',compact('participants'));
+        $idparticipant = Participant::get();
+        return view('admin.peserta.detail',compact('participants', 'idparticipant'));
     }
 
     /**
@@ -90,10 +90,7 @@ class ParticipantController extends Controller
     public function destroy($id)
     {
         $participant = Participant::find($id);
-        $participants = DB::table('participants')
-        ->join('users','participants.user_id','=','users.id')
-        ->where('user_id', $id)
-        ->delete();
+        $participant -> delete();
         return redirect('/admin/participants')->with('status', 'Data berhasil dihapus!');
     }
 }

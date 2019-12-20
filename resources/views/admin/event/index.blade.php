@@ -20,7 +20,22 @@
                     <h4>Heres You Got</h4>
                 </div>
                 <hr class="garis">
-                <a href="/admin/events/create" class="btn btn-success">Create Data</a>
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="btn btn-success btn-md"
+                    onclick="location.href='/admin/events/create'">Tambah Event</button>
+                    &nbsp &nbsp
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-warning dropdown-toggle"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Laporan
+                        <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="/admin/event/pdf" class="dropdown-item">PDF</a></li>
+                            <li><a href="/admin/event/excel" class="dropdown-item">Excel</a></li>
+                        </ul>
+                    </div>
+                </div>
                 <br><br>
                 @if (session('status'))
                     <div class="alert alert-success">

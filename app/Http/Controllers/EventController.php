@@ -44,7 +44,7 @@ class EventController extends Controller
                 'date_start' => 'required|date',
                 'date_finish' => 'required|date',
                 'quota' => 'required|numeric',
-                'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+                'photo' => 'image|mimes:jpeg,png,jpg,gif,svg'
             ]);
     
             $event = new Event;
@@ -53,7 +53,7 @@ class EventController extends Controller
                 $image = $request->file('photo');
                 $uuid4 = Uuid::uuid4();
                 $name = $uuid4->toString().'.'.$image->getClientOriginalExtension();
-                $destinationPath = public_path('/img/event');
+                $destinationPath = storage_path('/app/public/photo');
                 $imagePath = $destinationPath. "/".  $name;
                 $image->move($destinationPath, $name);
                 $event->photo = $name;
@@ -108,7 +108,7 @@ class EventController extends Controller
                 'date_start' => 'required|date',
                 'date_finish' => 'required|date',
                 'quota' => 'required|numeric',
-                'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+                'photo' => 'image|mimes:jpeg,png,jpg,gif,svg'
         ]);
 
         $event = Event::find($id);
@@ -116,7 +116,7 @@ class EventController extends Controller
             $image = $request->file('photo');
             $uuid4 = Uuid::uuid4();
             $name = $uuid4->toString().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('/img/event');
+            $destinationPath = storage_path('/app/public/photo');
             $imagePath = $destinationPath. "/".  $name;
             $image->move($destinationPath, $name);
             $event->photo = $name;

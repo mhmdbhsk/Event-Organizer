@@ -20,49 +20,25 @@
         <br>
         <ul style="list-style-type:none;">
             <li class="jumbotron list">
+                @foreach($participant as $event)
                 <div class="row">
-                    <div class="col col-lg-2">
-                        <img src="..." alt="..." width="27%">
+                    <div class="col col-lg-4">
+                        <img src="{{asset('storage/photo/' .$event->photo)}}" alt="..." width="100%">
                     </div>
-                    <div class="col col-lg-5">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A officia veniam inventore debitis aliquam consequuntur atque dolorem ipsam commodi, doloribus reiciendis odio iure ab perferendis voluptate ipsa!</p>
+                    <div class="col col-lg-4 text-center">
+                        <h4>{{$event->name_event}}</h4>
+                        <p>{{$event->description}}</p>
                     </div>
-                    <div class="col col-lg-5 text-center">
-                        <button class="btn btn-primary my-2 my-sm-0" type="submit">Detail</button>
-                        &nbsp
-                        <button class="btn btn-danger my-2 my-sm-0" type="submit">Batalkan</button>
+                    <div class="col col-lg-4 text-center">
+                        <form class="" action="/user/{{$event->idparticipants}}" method="post">
+                            @method('delete')
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="confirm('Yakin ingin membatalkan ?')" name="button">Batalkan</button>
+                        </form>
                     </div>
                 </div>
-            </li>
-            <li class="jumbotron list">
-                <div class="row">
-                    <div class="col col-lg-2">
-                        <img src="..." alt="..." width="27%">
-                    </div>
-                    <div class="col col-lg-5">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A officia veniam inventore debitis aliquam consequuntur atque dolorem ipsam commodi, doloribus reiciendis odio iure ab perferendis voluptate ipsa!</p>
-                    </div>
-                    <div class="col col-lg-5 text-center">
-                        <button class="btn btn-primary my-2 my-sm-0" type="submit">Detail</button>
-                        &nbsp
-                        <button class="btn btn-danger my-2 my-sm-0" type="submit">Batalkan</button>
-                    </div>
-                </div>
-            </li>
-            <li class="jumbotron list">
-                <div class="row">
-                    <div class="col col-lg-2">
-                        <img src="..." alt="..." width="27%">
-                    </div>
-                    <div class="col col-lg-5">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A officia veniam inventore debitis aliquam consequuntur atque dolorem ipsam commodi, doloribus reiciendis odio iure ab perferendis voluptate ipsa!</p>
-                    </div>
-                    <div class="col col-lg-5 text-center">
-                        <button class="btn btn-primary my-2 my-sm-0" type="submit">Detail</button>
-                        &nbsp
-                        <button class="btn btn-danger my-2 my-sm-0" type="submit">Batalkan</button>
-                    </div>
-                </div>
+                <br>
+                @endforeach
             </li>
         </ul>
         

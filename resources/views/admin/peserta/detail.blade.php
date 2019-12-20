@@ -41,14 +41,17 @@
                             <td>{{$acc->email}}</td>
                             <td>{{$acc->name_event}}</td>
                             <td>
-                                <form action="/admin/participants/{{$acc->id}}" method="post">
+                            @endforeach
+                            @foreach($idparticipant as $id)
+                                <form action="/admin/participants/{{$id->id}}" method="post">
                                 @method('delete')
                                 @csrf
                                 <button class="btn btn-danger" type="submit" name="delete" onclick="confirm('Yakin ingin menghapus ?')"><i class="fa fa-trash"> Delete</i></button>
                                 </form>
                             </td>
+                            @endforeach
                         </tr>
-                        @endforeach
+                        
                     </tbody>
                 </table>
             </div>

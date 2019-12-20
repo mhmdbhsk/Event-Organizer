@@ -33,8 +33,8 @@
                         <br>
 
                         <h2>Deskripsi</h2>
-                        <img width="100%"
-                        src="{{asset('img/event/<?=$event->photo?>')}}" alt=""><br><br>
+                        <img width="50%"
+                        src="{{asset('storage/photo/' .$event->photo)}}"><br><br>
                         {{$event->description}}
                 </div>
                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
@@ -44,7 +44,7 @@
                     <b>Pendaftar : </b> {{$jml = count($participant)}} <br>
                     <b>Sisa Kuota : </b> {{$total - $jml}} </p>
                     <h2>KEIKUTSERTAAN</h2>
-                    @if(count($ket)>0) 
+                    @if(count($ket)>0 && count($participant)>0)  
                     <h3>{{Auth::user()->name}} Sudah terdaftar
                     @else
                     <form class="" action="/user/{{$event->id}}/daftar" method="post">
