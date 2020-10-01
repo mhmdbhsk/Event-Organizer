@@ -11,25 +11,27 @@
 |
 */
 
+// Set All Route Good Okay
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix'=>''], function(){
-    Route::get('/', function(){
+Route::group(['prefix'=>''], function () {
+    Route::get('/', function () {
         return view('welcome');
     });
 });
 
 
-Route::group(['prefix'=>'', 'middleware'=>['auth', 'role:member']], function(){
+Route::group(['prefix'=>'', 'middleware'=>['auth', 'role:member']], function () {
     Route::resource('user', 'UserIndexController');
     Route::get('/myevent', 'UserIndexController@myevent');
     Route::post('user/{id}/daftar', 'UserIndexController@daftar');
 });
 
-Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'role:admin']], function(){
-    route::get('/', function(){
+Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'role:admin']], function () {
+    route::get('/', function () {
         return view('admin.dashboard');
     });
     Route::resource('events', 'EventController');
@@ -42,6 +44,5 @@ Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'role:admin']], function
     Route::group(['prefix'=>'user'], function () {
         Route::get('/excel', 'LaporanController@userexcel');
         Route::get('/pdf', 'LaporanController@userpdf');
-        });
+    });
 });
-
