@@ -25,8 +25,8 @@ class UsersSeeder extends Seeder
         $memberRole->save();
         // Membuat sample admin
         $admin = new User();
-        $admin->name = 'Admin Alan';
-        $admin->email = 'admin@gmail.com';
+        $admin->name = 'Admin Rehan';
+        $admin->email = 'rehan@gmail.com';
         $admin->password = bcrypt('rahasia');
         $admin->save();
         $admin->attachRole($adminRole);
